@@ -9,11 +9,26 @@
 import Foundation
 
 struct ToDoItem {
-    let id: UUID
+    
+    typealias ItemId = UUID
+    
+    let id: ItemId
     let title: String
     
     init(title: String) {
-        self.id = UUID()
+        self.id = ItemId()
         self.title = title
+    }
+}
+
+extension ToDoItem: Hashable {
+    var hashValue: Int {
+        return id.hashValue
+    }
+}
+
+extension ToDoItem: Equatable {
+    static func ==(lhs: ToDoItem, rhs: ToDoItem) -> Bool {
+        return lhs.id == rhs.id
     }
 }
