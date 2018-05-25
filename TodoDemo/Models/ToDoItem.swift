@@ -29,6 +29,6 @@ extension ToDoItem: Hashable {
 
 extension ToDoItem: Equatable {
     static func ==(lhs: ToDoItem, rhs: ToDoItem) -> Bool {
-        return lhs.id == rhs.id
+        return lhs.id == rhs.id && lhs.title == rhs.title
     }
 }

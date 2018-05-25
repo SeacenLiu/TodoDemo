@@ -46,6 +46,8 @@ class ToDoStore {
         }
     }
     
+    public var selectedIndex: Int?
+    
     private init() {}
 
     func append(item: ToDoItem) {
@@ -77,30 +79,9 @@ class ToDoStore {
     func item(at index: Int) -> ToDoItem {
         return items[index]
     }
-}
-
-extension Notification {
-    struct UserInfoKey<ValueType>: Hashable {
-        let key: String
-    }
     
-    func getUserInfo<T>(for key: Notification.UserInfoKey<T>) -> T {
-        return userInfo![key] as! T
+    func select(at index: Int) {
+        selectedIndex = index
     }
 }
 
-extension NotificationCenter {
-    func post<T>(name aName: NSNotification.Name, object anObject: Any?, typedUserInfo aUserInfo: [Notification.UserInfoKey<T> : T]? = nil) {
-        post(name: aName, object: anObject, userInfo: aUserInfo)
-    }
-}
-
-extension Notification.Name {
-    static let toDoStoreDidChangedNotification = Notification.Name(rawValue: "com.seacen.app.ToDoStoreDidChangedNotification")
-}
-
-extension Notification.UserInfoKey {
-    static var toDoStoreDidChangedChangeBehaviorKey: Notification.UserInfoKey<ToDoStore.ChangeBehavior> {
-        return Notification.UserInfoKey(key: "com.seacen.app.ToDoStoreDidChangedNotification.ChangeBehavior")
-    }
-}

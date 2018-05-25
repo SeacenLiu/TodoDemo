@@ -17,7 +17,6 @@ class ToDoListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
         navigationItem.rightBarButtonItem = .init(barButtonSystemItem: .add, target: self, action: #selector(addButtonPressed))
         addButton = navigationItem.rightBarButtonItem
         
@@ -57,6 +56,7 @@ class ToDoListViewController: UITableViewController {
         let title = "ToDo Item \(newCount)"
         store.append(item: .init(title: title))
     }
+    
 }
 
 // MARK: - table view data source
@@ -84,5 +84,6 @@ extension ToDoListViewController {
 extension ToDoListViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        ToDoStore.shared.select(at: indexPath.row)
     }
 }
