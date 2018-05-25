@@ -10,15 +10,31 @@ import Foundation
 
 struct ToDoItem {
     
+    enum ChangeBehavior {
+        case fixTitle(String)
+    }
+    
     typealias ItemId = UUID
     
     let id: ItemId
-    let title: String
+    var title: String {
+        didSet {
+            postNotification(behavior: .fixTitle(title))
+        }
+    }
     
     init(title: String) {
         self.id = ItemId()
         self.title = title
     }
+    
+    private func postNotification(behavior: ChangeBehavior) {
+        NotificationCenter.default.post(
+            name: .toDoItemDidChangedNotification,
+            object: self,
+            typedUserInfo: [.toDoItemDidChangedChangeBehaviorKey: behavior])
+    }
+    
 }
 
 extension ToDoItem: Hashable {
@@ -29,6 +45,6 @@ extension ToDoItem: Hashable {
 
 extension ToDoItem: Equatable {
     static func ==(lhs: ToDoItem, rhs: ToDoItem) -> Bool {
-        return lhs.id == rhs.id && lhs.title == rhs.title
+        return lhs.id == rhs.id
     }
 }

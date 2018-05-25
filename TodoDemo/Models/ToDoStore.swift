@@ -19,6 +19,8 @@ class ToDoStore {
     
     static let shared = ToDoStore()
     
+    public var selectedIndex: Int?
+    
     private var items: [ToDoItem] = [] {
         didSet {
             let behavior = ToDoStore.diff(original: oldValue, now: items)
@@ -46,8 +48,6 @@ class ToDoStore {
         }
     }
     
-    public var selectedIndex: Int?
-    
     private init() {}
 
     func append(item: ToDoItem) {
@@ -72,6 +72,10 @@ class ToDoStore {
         items[index] = new
     }
     
+    func edit(index: Int, new: ToDoItem) {
+        items[index] = new
+    }
+    
     var count: Int {
         return items.count
     }
@@ -84,4 +88,5 @@ class ToDoStore {
         selectedIndex = index
     }
 }
+
 

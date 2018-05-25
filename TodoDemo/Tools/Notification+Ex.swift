@@ -26,10 +26,16 @@ extension NotificationCenter {
 
 extension Notification.Name {
     static let toDoStoreDidChangedNotification = Notification.Name(rawValue: "com.seacen.app.ToDoStoreDidChangedNotification")
+    
+    static let toDoItemDidChangedNotification = Notification.Name(rawValue: "com.seacen.app.ToDoItemDidChangedNotification")
 }
 
 extension Notification.UserInfoKey {
     static var toDoStoreDidChangedChangeBehaviorKey: Notification.UserInfoKey<ToDoStore.ChangeBehavior> {
         return Notification.UserInfoKey(key: "com.seacen.app.ToDoStoreDidChangedNotification.ChangeBehavior")
+    }
+    
+    static var toDoItemDidChangedChangeBehaviorKey: Notification.UserInfoKey<ToDoItem.ChangeBehavior> {
+        return Notification.UserInfoKey(key: "com.seacen.app.ToDoItemDidChangedNotification.ChangeBehavior")
     }
 }

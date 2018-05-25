@@ -64,6 +64,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="titleTextFieldDidChange:" destination="bjP-Op-hNz" eventType="editingChanged" id="diP-vy-PKX"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -76,7 +79,7 @@
                         <viewLayoutGuide key="safeArea" id="n86-A3-7ZW"/>
                     </view>
                     <navigationItem key="navigationItem" title="ToDoDetail" id="k7N-4b-f7l">
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="lTA-vf-bil">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Save" id="lTA-vf-bil">
                             <connections>
                                 <action selector="saveClick:" destination="bjP-Op-hNz" id="M78-pl-Q3f"/>
                             </connections>
